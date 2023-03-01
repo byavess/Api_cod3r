@@ -11,15 +11,15 @@ import java.util.Optional;
 @Service
 public class ProdutosService {
 
-    @Autowired                                  //injeção de dependencia
+    @Autowired
     private ProdutosRepositorio repositorio;
 
-    public List<Produtos> findAll() {
+    public List<Produtos>findAll() {
         return repositorio.findAll();
     }
-    //recuperea o usuario por id
+
     public Produtos findById(Long id) {
         Optional<Produtos> obj = repositorio.findById(id);
-        return obj.get();       //retorna o objeto do tipo User
+        return obj.get();
     }
 }

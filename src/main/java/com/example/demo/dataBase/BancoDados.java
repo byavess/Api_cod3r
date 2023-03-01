@@ -9,22 +9,26 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 
 @Configuration
 @Profile("test")
 public class BancoDados implements CommandLineRunner {
+    Locale localeBR = new Locale("pt","BR");
     @Autowired
     private ProdutosRepositorio produtosRepositorio;
 
     @Override
     public void run(String... args) throws Exception {
+        NumberFormat price = new DecimalFormat("#0.000");
 
-        Produtos celular = new Produtos(1 , "Samsung", 1.600);
-
-        Produtos carros = new Produtos(2 , "Palio", 51.800);
+        Produtos celular = new Produtos(null , "Samsung", 1.600);
+        Produtos carros = new Produtos(null , "Palio", 518.00);
         Produtos eletrodomesticos = new Produtos(3 , "Geladeira", 11.300);
 
 
