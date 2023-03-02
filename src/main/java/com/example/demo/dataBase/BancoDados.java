@@ -19,13 +19,12 @@ import java.util.Locale;
 @Configuration
 @Profile("test")
 public class BancoDados implements CommandLineRunner {
-    Locale localeBR = new Locale("pt","BR");
+
     @Autowired
     private ProdutosRepositorio produtosRepositorio;
 
     @Override
     public void run(String... args) throws Exception {
-        NumberFormat price = new DecimalFormat("#0.000");
 
         Produtos celular = new Produtos(null , "Samsung", 1.600);
         Produtos carros = new Produtos(null , "Palio", 518.00);
@@ -33,5 +32,6 @@ public class BancoDados implements CommandLineRunner {
 
 
         produtosRepositorio.saveAll(Arrays.asList(celular, carros, eletrodomesticos));
+//        produtosRepositorio.getById(produtosRepositorio.count());
     }
  }
