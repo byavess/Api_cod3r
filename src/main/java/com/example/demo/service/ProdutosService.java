@@ -24,8 +24,9 @@ public class ProdutosService {
     }
 
     public Produtos findById(Long id) {
-        Optional<Produtos> obj = repositorio.findById(id);
-        return obj.orElseThrow(() ->   new ResourceNotFoundException(id)); //get ou error
+        Optional<Produtos> obj = repositorio.findById(id);     return obj.get();
+
+//        return obj.orElseThrow(() ->   new ResourceNotFoundException(id)); //get ou error
     }
     public Produtos create(Produtos obj){
 
@@ -38,18 +39,19 @@ public class ProdutosService {
             updateData(entity, obj);
             return repositorio.save(entity);
         } catch (EntityNotFoundException e) {
-            throw  new ResourceNotFoundException(id);
+            throw new ResourceNotFoundException(id);
         }
 
     }
     private void updateData(Produtos entity, Produtos obj) {
 
+        entity.setId(obj.getId());
         entity.setName(obj.getName());
         entity.setPrice(obj.getPrice());
 
 
     }
-    public void deleteProduct(Long id){
+    public void delete(Long id, Produtos obj){
         try {
             repositorio.deleteById(id);
         }catch (EmptyResultDataAccessException e){
@@ -58,6 +60,7 @@ public class ProdutosService {
             throw  new DatabaseException(e.getMessage());
         }
     }
+
 
 
 }

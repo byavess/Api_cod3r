@@ -8,31 +8,28 @@ import org.springframework.format.annotation.NumberFormat;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
 @Entity
-@Table(name = "Produtos")
+@Table(name = "produtos")
 public class Produtos implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id         //PK primary key
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id")
     private Integer id;
-
     @Column(name = "name")
     private String name;
 
     @Column(name = "price")
     private Double price;
 
-
     @Column(name = "action")
     private String action;
-
-
 
     public Produtos() {
     }
@@ -41,11 +38,7 @@ public class Produtos implements Serializable {
         this.id = id;
         this.name = name;
         this.price = price;
-
-
     }
-
-
     public Integer getId() {
         return id;
     }
